@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c9931a29f8a8a4bb0d24fdf0a36b94, type: 3}
   m_Name: InputData_Windows
   m_EditorClassIdentifier: 
-  clickedPos: {x: 0, y: 0, z: 0}
-  _InputPlatformType: 0
+  MauseClickPosition: {x: -1.930533, y: 2.4620357, z: -10}
+  _InputPlatformType: 1
