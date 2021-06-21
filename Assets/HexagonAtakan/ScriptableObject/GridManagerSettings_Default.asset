@@ -22,3 +22,6 @@ MonoBehaviour:
   - {r: 0.08116722, g: 1, b: 0, a: 1}
   _hexagonPrefab: {fileID: 6804602111495953102, guid: c3d4f79f91012a741a76b77a3c3f341d, type: 3}
   _hexagonStartCordinate: {x: -2.1, y: 4.1, z: 0}
+  _xCordIncreaseOffset: 0.58
+  _yCordIncreaseOffset: 0.16
+  _yBottomLineOffset: 0.66

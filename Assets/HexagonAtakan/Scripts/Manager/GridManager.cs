@@ -24,15 +24,11 @@ namespace HexagonAtakan.Manager
                 for (int y = 0; y < _gridManagerSettings.Height; y++)
                 {
                     //x Cord Settings
-                    float xCordIncreaseOffset = 0.58f;
-                    float xCord = startPosition.x + (x * xCordIncreaseOffset);
+                    float xCord = startPosition.x + (x * _gridManagerSettings.XCordIncreaseOffset);
 
                     //y Cord Settings
-                    float yCordIncreaseOffset = 0.16f;
-                    float yDownLineOffset = 0.64f;
                     float yOffset = x % 2 == 0 ? 1 : -1;
-                    float yCord = startPosition.y - (y * yDownLineOffset) + (yOffset * yCordIncreaseOffset);
-
+                    float yCord = startPosition.y - (y * _gridManagerSettings.YBottomLineOffset) + (yOffset * _gridManagerSettings.YCordIncreaseOffset);
                     var instatiated = CreateRandomColorHexagon(new Vector3(xCord, yCord, 0));
 
                     //Add Hexagon to Hexagon Array
