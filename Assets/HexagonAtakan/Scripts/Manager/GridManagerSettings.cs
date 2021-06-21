@@ -21,9 +21,9 @@ namespace HexagonAtakan.Manager
         [SerializeField] private GameObject _hexagonPrefab;
         public GameObject HexagonPrefab { get { return _hexagonPrefab; } }
 
-        [Header("Hexagon Cordinate")]
-        [SerializeField] private Vector3 _hexagonStartCordinate;
-        public Vector3 HexagonStartCordinate { get { return _hexagonStartCordinate; } }
+        [Header("Hexagon Coordinate")]
+        [SerializeField] private Vector3 _hexagonStartCoordinate;
+        public Vector3 HexagonStartCoordinate { get { return _hexagonStartCoordinate; } }
 
         [SerializeField] private float _xCordIncreaseOffset;
         public float XCordIncreaseOffset { get { return _xCordIncreaseOffset; } }

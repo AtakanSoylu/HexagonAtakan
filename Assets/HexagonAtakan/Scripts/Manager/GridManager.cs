@@ -16,9 +16,9 @@ namespace HexagonAtakan.Manager
         }
 
         //Initialize Hexagon for Game Screen
-        public void InitializeHexagons()
+        public void CreateAndInitializeHexagons()
         {
-            Vector3 startPosition = _gridManagerSettings.HexagonStartCordinate;
+            Vector3 startPosition = _gridManagerSettings.HexagonStartCoordinate;
             for (int x = 0; x < _gridManagerSettings.Width; x++)
             {
                 for (int y = 0; y < _gridManagerSettings.Height; y++)

@@ -12,7 +12,7 @@ namespace HexagonAtakan.Manager
 
         private void Start()
         {
-            _gridManager.InitializeHexagons();
+            _gridManager.CreateAndInitializeHexagons();
         }
 
         private void Update()
