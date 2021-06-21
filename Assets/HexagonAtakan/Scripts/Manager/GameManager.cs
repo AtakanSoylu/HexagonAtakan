@@ -9,7 +9,7 @@ namespace HexagonAtakan.Manager
 
         private void Start()
         {
-            _gridManager.CreateHexagons();
+            _gridManager.InitializeHexagons();
         }
         
         

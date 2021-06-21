@@ -8,7 +8,6 @@ namespace HexagonAtakan.Manager
     public class GridManager : MonoBehaviour
     {
         [SerializeField] private GridManagerSettings _gridManagerSettings;
-
         protected HexagonBase[,] _hexagonBaseArray;
 
         public void Start()
@@ -16,7 +15,8 @@ namespace HexagonAtakan.Manager
             _hexagonBaseArray = new HexagonBase[_gridManagerSettings.Width, _gridManagerSettings.Height];
         }
 
-        public void CreateHexagons()
+        //Initialize Hexagon for Game Screen
+        public void InitializeHexagons()
         {
             Vector3 startPosition = _gridManagerSettings.HexagonStartCordinate;
             for (int x = 0; x < _gridManagerSettings.Width; x++)
@@ -24,8 +24,8 @@ namespace HexagonAtakan.Manager
                 for (int y = 0; y < _gridManagerSettings.Height; y++)
                 {
                     //x Cord Settings
-                    float xCordIncrease = 0.58f;
-                    float xCord = startPosition.x + (x * xCordIncrease);
+                    float xCordIncreaseOffset = 0.58f;
+                    float xCord = startPosition.x + (x * xCordIncreaseOffset);
 
                     //y Cord Settings
                     float yCordIncreaseOffset = 0.16f;
@@ -43,7 +43,7 @@ namespace HexagonAtakan.Manager
 
         private GameObject CreateRandomColorHexagon(Vector3 position)
         {
-            // Random int for hexagon color
+            // Random int for Hexagon Color
             int rand = Random.Range(0, _gridManagerSettings.HexagonColor.Length);
 
             var instantiated = Instantiate(_gridManagerSettings.HexagonPrefab, position, Quaternion.identity);
