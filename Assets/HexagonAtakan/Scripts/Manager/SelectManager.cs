@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace HexagonAtakan.Manager
 {
-    public class SelectManager : MonoBehaviour
+    public class SelectManager   : MonoBehaviour
     {
         [SerializeField] private SelectManagerSettings _selectManagerSettings;
         [SerializeField] private GridManagerSettings _gridManagerSettings;
@@ -60,10 +60,7 @@ namespace HexagonAtakan.Manager
                     isNarrow = !isNarrow;
                     previousPosition = position;
                 }
-                
             }
-
-
         }
     }
 }

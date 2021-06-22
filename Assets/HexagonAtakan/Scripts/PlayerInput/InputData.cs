@@ -9,12 +9,10 @@ namespace HexagonAtakan.PlayerInput
     [CreateAssetMenu(menuName = "HexagonAtakan/Input/Input Data")]
     public class InputData : ScriptableObject
     {
-        public Vector3 MauseClickPosition;
+        public Vector3 MauseClickPosition ;
 
         [Header("Platform")]
         [SerializeField] private InputPlatformType _InputPlatformType;
-
-
 
         public void ProcessInput()
         {
@@ -36,5 +34,8 @@ namespace HexagonAtakan.PlayerInput
                 }
             }
         }
+
+
+
     }
 }

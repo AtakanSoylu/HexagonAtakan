@@ -6,7 +6,6 @@ namespace HexagonAtakan.Selectable
 {
     public class SelectableObject : MonoBehaviour
     {
-        
-
+        public Transform _childTransform;
     }
 }
