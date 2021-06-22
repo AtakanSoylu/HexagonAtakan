@@ -6,16 +6,28 @@ namespace HexagonAtakan.Manager
     [CreateAssetMenu(menuName = "HexagonAtakan/Manager/Select Manager Settings")]
     public class SelectManagerSettings : ScriptableObject
     {
-        [Header("Prefabs")]
-        [SerializeField] private GameObject _selectedHexagonRightPrefab;
-        public GameObject SelectedHexagonRightPrefab { get { return _selectedHexagonRightPrefab; } }
+        [Header("Prefab")]
+        [SerializeField] private GameObject _selectedHexagonPrefab;
+        public GameObject SelectedHexagonPrefab { get { return _selectedHexagonPrefab; } }
 
-        [SerializeField] private GameObject _selectedHexagonLeftPrefab;
-        public GameObject SelectedHexagonLeftPrefab { get { return _selectedHexagonLeftPrefab; } }
 
         [Header("Coordinate")]
-        [SerializeField] private Vector3 _hexagonStartCoordinate;
-        public Vector3 HexagonStartCoordinate { get { return _hexagonStartCoordinate; } }
+        [SerializeField] private float _xNarrowOffset;
+        public float XNarrowOffset { get { return _xNarrowOffset; } }
+
+        [SerializeField] private float _xWideOffset;
+        public float XWideOffset { get { return _xWideOffset; } }
+
+        [Header("Start  Position X Offsets")]
+        [SerializeField] private float _narrowStartPositionXOffset;
+        public float NarrowStartPositionXOffset { get { return _narrowStartPositionXOffset; } }
+
+        [SerializeField] private float _wideStartPositionXOffset;
+        public float WideStartPositionXOffset { get { return _wideStartPositionXOffset; } }
+
+
+
+
 
     }
 }

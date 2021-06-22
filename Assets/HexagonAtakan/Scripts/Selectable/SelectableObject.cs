@@ -7,5 +7,6 @@ namespace HexagonAtakan.Selectable
     public class SelectableObject : MonoBehaviour
     {
         
+
     }
 }

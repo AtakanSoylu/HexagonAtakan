@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8b1a0acf4f1234087c38694df214c9, type: 3}
+  m_Name: SelectManagerSettings_Default
+  m_EditorClassIdentifier: 
+  _selectedHexagonPrefab: {fileID: 7652894920026013614, guid: a61a8f5d1f51c6549a578ad26fdfb1dd, type: 3}
+  _xNarrowOffset: 0.46
+  _xWideOffset: 0.72
