@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HexagonAtakan.Selectable;
 
 namespace HexagonAtakan.Manager
 {
@@ -9,9 +10,13 @@ namespace HexagonAtakan.Manager
         [SerializeField] private SelectManagerSettings _selectManagerSettings;
         [SerializeField] private GridManagerSettings _gridManagerSettings;
 
+        
+        [SerializeField] private SelectableObject[,] _selectableObjectArray;
+        public SelectableObject[,] SelectableObjectArray { get { return _selectableObjectArray; } }
 
         private void Start()
         {
+            _selectableObjectArray = new SelectableObject[_gridManagerSettings.Width - 1, (_gridManagerSettings.Height - 1) * 2];
             CreateAndInitializeScriptableObject();
         }
 
@@ -48,14 +53,20 @@ namespace HexagonAtakan.Manager
 
                     Vector3 position = new Vector3(xCord, yCord, 0);
 
+
+                    //Add to scene and selectable object array
                     if (isNarrow)
                     {
-                        Instantiate(_selectManagerSettings.SelectedHexagonPrefab, position, Quaternion.Euler(0, 0, 180));
+                        var instatiated = Instantiate(_selectManagerSettings.SelectedHexagonPrefab, position, Quaternion.Euler(0, 0, 180));
+                        _selectableObjectArray[x, y] = instatiated.GetComponent<SelectableObject>();
                     }
                     else
                     {
-                        Instantiate(_selectManagerSettings.SelectedHexagonPrefab, position, Quaternion.identity);
+                        var instatiated = Instantiate(_selectManagerSettings.SelectedHexagonPrefab, position, Quaternion.identity);
+                        _selectableObjectArray[x, y] = instatiated.GetComponent<SelectableObject>();
+
                     }
+
 
                     isNarrow = !isNarrow;
                     previousPosition = position;

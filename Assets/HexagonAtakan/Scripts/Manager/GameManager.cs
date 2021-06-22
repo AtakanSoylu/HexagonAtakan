@@ -23,7 +23,6 @@ namespace HexagonAtakan.Manager
         //Check input for selectable object
         public void CheckInput()
         {
-            //sürekli çalışıyor düzelt
             Collider2D hit = Physics2D.OverlapPoint(_inputData.MauseClickPosition);
 
             if (hit != null)
