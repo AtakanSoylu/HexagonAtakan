@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace HexagonAtakan.Hexagon
 {
-    public class HexagonBase : MonoBehaviour
+    public class HexagonController : MonoBehaviour
     {
         
     }

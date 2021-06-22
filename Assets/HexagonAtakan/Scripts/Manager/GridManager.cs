@@ -8,11 +8,11 @@ namespace HexagonAtakan.Manager
     public class GridManager : MonoBehaviour
     {
         [SerializeField] private GridManagerSettings _gridManagerSettings;
-        protected HexagonBase[,] _hexagonBaseArray;
+        protected HexagonController[,] _hexagonBaseArray;
 
         public void Start()
         {
-            _hexagonBaseArray = new HexagonBase[_gridManagerSettings.Width, _gridManagerSettings.Height];
+            _hexagonBaseArray = new HexagonController[_gridManagerSettings.Width, _gridManagerSettings.Height];
         }
 
         //Initialize Hexagon for Game Screen
@@ -32,7 +32,7 @@ namespace HexagonAtakan.Manager
                     var instatiated = CreateRandomColorHexagon(new Vector3(xCord, yCord, 0));
 
                     //Add Hexagon to Hexagon Array
-                    _hexagonBaseArray[x, y] = instatiated.GetComponent<HexagonBase>();
+                    _hexagonBaseArray[x, y] = instatiated.GetComponent<HexagonController>();
                 }
             }
         }

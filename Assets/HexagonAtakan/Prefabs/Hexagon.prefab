@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3488747325102412716}
   - component: {fileID: 1727292647080688409}
+  - component: {fileID: 594215844027889894}
+  - component: {fileID: 7653475335778995337}
   m_Layer: 0
   m_Name: Hexagon
   m_TagString: Untagged
@@ -83,3 +85,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &594215844027889894
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6804602111495953102}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.65
+--- !u!114 &7653475335778995337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6804602111495953102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e474789cb715c1e44a7c777ec6610d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

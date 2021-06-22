@@ -10,6 +10,9 @@ namespace HexagonAtakan.Manager
         [SerializeField] private GridManager _gridManager;
         [SerializeField] private InputData _inputData;
 
+        //Test
+        public Collider2D _previousColiderHit;
+
         private void Start()
         {
             _gridManager.CreateAndInitializeHexagons();
@@ -25,19 +28,28 @@ namespace HexagonAtakan.Manager
         {
             Collider2D hit = Physics2D.OverlapPoint(_inputData.MauseClickPosition);
 
-            if (hit != null)
+            if (_previousColiderHit != hit)
             {
-                if (hit.GetComponent<SelectableObject>() != null)
+                if (hit != null)
                 {
-                    hit.GetComponent<SpriteRenderer>().enabled = true;
-                    Transform childSprite = hit.GetComponent<SelectableObject>()._childTransform;
-                    childSprite.GetComponent<SpriteRenderer>().enabled = true;
+                    if (hit.GetComponent<SelectableObject>() != null)
+                    {
+                        hit.GetComponent<SpriteRenderer>().enabled = true;
+                        Transform childSprite = hit.GetComponent<SelectableObject>()._childTransform;
+                        childSprite.GetComponent<SpriteRenderer>().enabled = true;
 
+                        //Previous Sprite Off
+                        if (_previousColiderHit != null && _previousColiderHit.GetComponent<SpriteRenderer>() != null)
+                        {
+                            _previousColiderHit.GetComponent<SpriteRenderer>().enabled = false;
+                            Transform previousChildSprite = _previousColiderHit.GetComponent<SelectableObject>()._childTransform;
+                            previousChildSprite.GetComponent<SpriteRenderer>().enabled = false;
+
+                        }
+                        _previousColiderHit = hit;
+                    }
                 }
             }
-
         }
-
-
     }
 }
