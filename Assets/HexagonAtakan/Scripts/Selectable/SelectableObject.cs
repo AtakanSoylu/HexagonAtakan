@@ -25,6 +25,23 @@ namespace HexagonAtakan.Selectable
             {
                 _connectedHexagonArray[_connectedHexagonCount] = coll.GetComponent<HexagonController>();
                 _connectedHexagonCount++;
+                if (_connectedHexagonCount == 3) _connectedHexagonCount = 0;
+            }
+        }
+
+        public void AdjustmentChildHexagonActive()
+        {
+            for (int i = 0; i < _connectedHexagonArray.Length; i++)
+            {
+                _connectedHexagonArray[i].transform.SetParent(transform);
+            }
+        }
+
+        public void AdjustmentChildHexagonDeactive()
+        {
+            for (int i = 0; i < _connectedHexagonArray.Length; i++)
+            {
+                _connectedHexagonArray[i].transform.SetParent(null);
             }
         }
     }
