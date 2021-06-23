@@ -19,6 +19,7 @@ namespace HexagonAtakan.Selectable
             _connectedHexagonCount = 0;
         }
 
+
         private void OnTriggerEnter2D(Collider2D coll)
         {
             if (coll.GetComponent<HexagonController>() != null)

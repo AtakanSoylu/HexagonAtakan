@@ -12,7 +12,7 @@ namespace HexagonAtakan.PlayerInput
         private void Start()
         {
             //Mean dont select anything (Default)
-            _inputData.MauseClickPosition = new Vector3(1000, 1000);
+            _inputData.StartClickPosition = new Vector3(1000, 1000);
         }
         private void Update()
         {

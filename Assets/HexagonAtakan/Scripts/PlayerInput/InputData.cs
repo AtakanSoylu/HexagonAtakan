@@ -9,7 +9,9 @@ namespace HexagonAtakan.PlayerInput
     [CreateAssetMenu(menuName = "HexagonAtakan/Input/Input Data")]
     public class InputData : ScriptableObject
     {
-        public Vector3 MauseClickPosition ;
+        public Vector3 StartClickPosition;
+        public Vector3 LastClickPosition;
+        public bool isDragable = false;
 
         [Header("Platform")]
         [SerializeField] private InputPlatformType _InputPlatformType;
@@ -22,7 +24,11 @@ namespace HexagonAtakan.PlayerInput
                 {
                     if (Input.GetTouch(0).phase == TouchPhase.Began)
                     {
-                        MauseClickPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                        StartClickPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                    }
+                    if (Input.GetTouch(0).phase == TouchPhase.Moved)
+                    {
+                        LastClickPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
                     }
                 }
             }
@@ -30,7 +36,12 @@ namespace HexagonAtakan.PlayerInput
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    MauseClickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    StartClickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                }
+                if (Input.GetMouseButton(0))
+                {
+                    LastClickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    isDragable = true;
                 }
             }
         }
