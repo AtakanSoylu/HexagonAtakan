@@ -14,16 +14,6 @@ namespace HexagonAtakan.Manager
         public Collider2D _previousColiderHit;
 
 
-
-        // Testing
-        [SerializeField] private float _rotationTime = 2f;
-        [SerializeField] private float _delayBetweenRotations = 1f;
-
-        private WaitForSeconds _rotationDelay;
-        private Quaternion _targetRot;
-
-        private bool _rotating;
-        ///******/////
         
 
 
@@ -31,7 +21,6 @@ namespace HexagonAtakan.Manager
         {
             _gridManager.CreateAndInitializeHexagons();
 
-            _rotationDelay = new WaitForSeconds(_delayBetweenRotations);
         }
 
         private void Update()
@@ -43,7 +32,7 @@ namespace HexagonAtakan.Manager
         //Check input for selectable object
         public void CheckInput()
         {
-            _selectedHexagons = Physics2D.OverlapPoint(_inputData.StartClickPosition);
+            _selectedHexagons = Physics2D.OverlapPoint(_inputData.SelectedObjectPosition);
 
             if (_previousColiderHit != _selectedHexagons)
             {
@@ -51,10 +40,6 @@ namespace HexagonAtakan.Manager
                 {
                     if (_selectedHexagons.GetComponent<SelectableObject>() != null)
                     {
-                        _selectedHexagons.GetComponent<SpriteRenderer>().enabled = true;
-                        Transform childSprite = _selectedHexagons.GetComponent<SelectableObject>()._childTransform;
-                        childSprite.GetComponent<SpriteRenderer>().enabled = true;
-                        _selectedHexagons.GetComponent<SelectableObject>().AdjustmentChildHexagonActive();
 
                         //Previous Sprite Off
                         if (_previousColiderHit != null && _previousColiderHit.GetComponent<SpriteRenderer>() != null)
@@ -64,6 +49,12 @@ namespace HexagonAtakan.Manager
                             previousChildSprite.GetComponent<SpriteRenderer>().enabled = false;
                             _previousColiderHit.GetComponent<SelectableObject>().AdjustmentChildHexagonDeactive();
                         }
+
+                        _selectedHexagons.GetComponent<SpriteRenderer>().enabled = true;
+                        Transform childSprite = _selectedHexagons.GetComponent<SelectableObject>()._childTransform;
+                        childSprite.GetComponent<SpriteRenderer>().enabled = true;
+                        _selectedHexagons.GetComponent<SelectableObject>().AdjustmentChildHexagonActive();
+
                         _previousColiderHit = _selectedHexagons;
                     }
                 }
@@ -78,11 +69,55 @@ namespace HexagonAtakan.Manager
                 {
                     if (_selectedHexagons.GetComponent<SelectableObject>() != null)
                     {
-
-
-                        
-                        _selectedHexagons.GetComponent<SelectableObjectController>().StartRotate();
+                        RotateDirection();
                     }
+                }
+            }
+        }
+
+        public void RotateDirection()
+        {
+            Vector3 centerPosition = _selectedHexagons.transform.position;
+            Debug.Log(centerPosition);
+
+            //120 is Right Rotate, -120 is Left Rotate
+            if (centerPosition.y < _inputData.StartClickPosition.y)
+            {
+                if(_inputData.StartClickPosition.x + 1  < _inputData.LastClickPosition.x)
+                {
+                    _selectedHexagons.GetComponent<SelectableObjectController>().StartRotate(120);
+                }
+                else if (_inputData.StartClickPosition.x > _inputData.LastClickPosition.x + 1)
+                {
+                    _selectedHexagons.GetComponent<SelectableObjectController>().StartRotate(-120);
+
+                }
+                else if(_inputData.StartClickPosition.y > _inputData.LastClickPosition.y + 1)
+                {
+                    _selectedHexagons.GetComponent<SelectableObjectController>().StartRotate(120);
+                }
+                else if(_inputData.StartClickPosition.y + 1 < _inputData.LastClickPosition.y)
+                {
+                    _selectedHexagons.GetComponent<SelectableObjectController>().StartRotate(-120);
+                }
+            }
+            else if(centerPosition.y > _inputData.StartClickPosition.y)
+            {
+                if(_inputData.StartClickPosition.x + 1 < _inputData.LastClickPosition.x)
+                {
+                    _selectedHexagons.GetComponent<SelectableObjectController>().StartRotate(-120);
+                }
+                else if(_inputData.StartClickPosition.x > _inputData.LastClickPosition.x + 1)
+                {
+                    _selectedHexagons.GetComponent<SelectableObjectController>().StartRotate(120);
+                }
+                else if(_inputData.StartClickPosition.y > _inputData.LastClickPosition.y + 1)
+                {
+                    _selectedHexagons.GetComponent<SelectableObjectController>().StartRotate(-120);
+                }
+                else if(_inputData.StartClickPosition.y + 1 < _inputData.LastClickPosition.y)
+                {
+                    _selectedHexagons.GetComponent<SelectableObjectController>().StartRotate(120);
                 }
             }
         }
