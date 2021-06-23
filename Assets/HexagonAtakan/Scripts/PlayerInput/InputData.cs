@@ -11,7 +11,11 @@ namespace HexagonAtakan.PlayerInput
     {
         public Vector3 StartClickPosition;
         public Vector3 LastClickPosition;
+        public Vector3 UpClickPosition;
+        public Vector3 SelectedObjectPosition;
+        public float distanceTest;
         public bool isDragable = false;
+        public bool isSelectable = true;
 
         [Header("Platform")]
         [SerializeField] private InputPlatformType _InputPlatformType;
@@ -34,15 +38,28 @@ namespace HexagonAtakan.PlayerInput
             }
             else if (_InputPlatformType == InputPlatformType.Windows)
             {
+
                 if (Input.GetMouseButtonDown(0))
                 {
                     StartClickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 }
+
                 if (Input.GetMouseButton(0))
                 {
                     LastClickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    isDragable = true;
                 }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    UpClickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                }
+
+                if(Vector3.Distance(StartClickPosition, UpClickPosition) < 0.05f)
+                {
+                    distanceTest = Vector3.Distance(StartClickPosition, UpClickPosition);
+                    SelectedObjectPosition = UpClickPosition;
+                }
+
+
             }
         }
 

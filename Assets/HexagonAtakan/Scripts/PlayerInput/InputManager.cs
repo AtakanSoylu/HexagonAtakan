@@ -13,6 +13,7 @@ namespace HexagonAtakan.PlayerInput
         {
             //Mean dont select anything (Default)
             _inputData.StartClickPosition = new Vector3(1000, 1000);
+            _inputData.SelectedObjectPosition = new Vector3(1000, 1000);
         }
         private void Update()
         {

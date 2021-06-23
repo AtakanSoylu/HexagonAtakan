@@ -21,21 +21,21 @@ namespace HexagonAtakan.Selectable
             _targetRot = transform.localRotation;
         }
 
-
-        public void StartRotate()
+        //Start rotate with angle
+        public void StartRotate(float angle)
         {
             if (_rotating == false)
             {
                 _rotating = true;
-                StartCoroutine(Rotate(_selectableControllerSettings.RotationTime));
+                StartCoroutine(Rotate(_selectableControllerSettings.RotationTime,angle));
             }
         }
 
 
-        private IEnumerator Rotate(float rotateTime)
+        private IEnumerator Rotate(float rotateTime, float angle)
         {
             var startRot = transform.localRotation;
-            _targetRot *= Quaternion.AngleAxis(120, Vector3.back);
+            _targetRot *= Quaternion.AngleAxis(angle, Vector3.back);
 
             float time = 0;
 
@@ -47,7 +47,6 @@ namespace HexagonAtakan.Selectable
             }
 
             transform.localRotation = _targetRot;
-            
             yield return _rotationDelay;
 
             _rotating = false;
