@@ -9,6 +9,7 @@ namespace HexagonAtakan.PlayerInput
     [CreateAssetMenu(menuName = "HexagonAtakan/Input/Input Data")]
     public class InputData : ScriptableObject
     {
+        public bool LockClick;
         public Vector3 StartClickPosition;
         public Vector3 LastClickPosition;
         public Vector3 UpClickPosition;
@@ -16,12 +17,13 @@ namespace HexagonAtakan.PlayerInput
         public float distanceTest;
         public bool isDragable;
 
+
         [Header("Platform")]
         [SerializeField] private InputPlatformType _InputPlatformType;
 
         public void ProcessInput()
         {
-            if (_InputPlatformType == InputPlatformType.Android)
+            if (_InputPlatformType == InputPlatformType.Android && LockClick==false)
             {
                 if (Input.touchCount > 0)
                 {
@@ -35,7 +37,7 @@ namespace HexagonAtakan.PlayerInput
                     }
                 }
             }
-            else if (_InputPlatformType == InputPlatformType.Windows)
+            else if (_InputPlatformType == InputPlatformType.Windows && LockClick == false)
             {
 
                 if (Input.GetMouseButtonDown(0))

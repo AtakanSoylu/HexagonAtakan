@@ -548,7 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridManager: {fileID: 793105433}
   _inputData: {fileID: 11400000, guid: 291ba7f3b00f7e64db926656ab7b0d56, type: 2}
-  _selectedHexagons: {fileID: 0}
+  _selectedHexagonsHit: {fileID: 0}
   _previousColiderHit: {fileID: 0}
 --- !u!1 &1490620619
 GameObject:

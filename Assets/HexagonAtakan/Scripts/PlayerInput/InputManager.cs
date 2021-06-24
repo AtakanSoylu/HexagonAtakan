@@ -15,6 +15,7 @@ namespace HexagonAtakan.PlayerInput
             _inputData.StartClickPosition = new Vector3(1000, 1000);
             _inputData.SelectedObjectPosition = new Vector3(1000, 1000);
             _inputData.isDragable = false;
+            _inputData.LockClick = false;
         }
         private void Update()
         {

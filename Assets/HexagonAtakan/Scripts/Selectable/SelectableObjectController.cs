@@ -12,9 +12,8 @@ namespace HexagonAtakan.Selectable
         private WaitForSeconds _rotationDelay;
         private Quaternion _targetRot;
 
-        private bool _rotating;
+        private bool _rotating = false;
 
-        //
         public int _rotateCount = 0;
 
 

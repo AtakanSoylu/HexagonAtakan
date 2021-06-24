@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314fdfd551f504a4f9b760c87fa23e41, type: 3}
   m_Name: SelectableObjectControllerSettings_Default
   m_EditorClassIdentifier: 
-  _rotationTime: 0.25
-  _delayBetweenRotations: 1
+  _rotationTime: 0.1
+  _delayBetweenRotations: 0.2

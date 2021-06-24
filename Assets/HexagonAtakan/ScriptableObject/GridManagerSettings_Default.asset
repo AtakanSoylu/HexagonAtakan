@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab2fb91c8e88664d93a7c9aad460c0a, type: 3}
   m_Name: GridManagerSettings_Default
   m_EditorClassIdentifier: 
-  _width: 2
-  _height: 2
+  _width: 4
+  _height: 3
   _hexagonColorArray:
   - {r: 1, g: 0.07075471, b: 0.07075471, a: 1}
   - {r: 1, g: 0.85244375, b: 0, a: 1}
