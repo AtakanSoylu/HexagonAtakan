@@ -183,7 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45433742ef80ae74994f470bb719a8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gridManager: {fileID: 0}
   _childTransform: {fileID: 1534191414700991953}
+  _childHexagonArray: []
+  _searching: 1
 --- !u!58 &6935935084288775303
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -199,7 +202,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.3
 --- !u!50 &9120510063554464624
 Rigidbody2D:
   serializedVersion: 4
@@ -234,3 +237,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectableControllerSettings: {fileID: 11400000, guid: 6459350eff71c184e8f590773da2548e, type: 2}
+  _rotateCount: 0

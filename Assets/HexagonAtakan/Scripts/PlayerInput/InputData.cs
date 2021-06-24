@@ -14,8 +14,7 @@ namespace HexagonAtakan.PlayerInput
         public Vector3 UpClickPosition;
         public Vector3 SelectedObjectPosition;
         public float distanceTest;
-        public bool isDragable = false;
-        public bool isSelectable = true;
+        public bool isDragable;
 
         [Header("Platform")]
         [SerializeField] private InputPlatformType _InputPlatformType;

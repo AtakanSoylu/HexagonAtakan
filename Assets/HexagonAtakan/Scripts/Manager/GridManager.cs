@@ -32,6 +32,7 @@ namespace HexagonAtakan.Manager
                     var instatiated = CreateRandomColorHexagon(new Vector3(xCord, yCord, 0));
 
                     //Add Hexagon to Hexagon Array
+                    instatiated.GetComponent<HexagonController>().SetPosition(x, y);
                     _hexagonBaseArray[x, y] = instatiated.GetComponent<HexagonController>();
                 }
             }

@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c9931a29f8a8a4bb0d24fdf0a36b94, type: 3}
   m_Name: InputData_Windows
   m_EditorClassIdentifier: 
-  MauseClickPosition: {x: -0.662406, y: 2.8313992, z: -10}
+  StartClickPosition: {x: -1.9466883, y: 4.2229404, z: -10}
+  LastClickPosition: {x: 1.7689822, y: 3.964459, z: -10}
+  UpClickPosition: {x: 1.7689822, y: 3.964459, z: -10}
+  SelectedObjectPosition: {x: -0.37964457, y: 3.2374802, z: -10}
+  distanceTest: 0
+  isDragable: 1
   _InputPlatformType: 1

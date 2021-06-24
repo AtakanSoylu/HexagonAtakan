@@ -7,13 +7,16 @@ namespace HexagonAtakan.Selectable
 {
     public class SelectableObjectController : MonoBehaviour
     {
-
         [SerializeField] private SelectableObjectControllerSettings _selectableControllerSettings;
 
         private WaitForSeconds _rotationDelay;
         private Quaternion _targetRot;
 
         private bool _rotating;
+
+        //
+        public int _rotateCount = 0;
+
 
         private void Start()
         {            
@@ -50,6 +53,9 @@ namespace HexagonAtakan.Selectable
             yield return _rotationDelay;
 
             _rotating = false;
+            
+            //Add rotate count
+            _rotateCount++;
         }
     }
 }
