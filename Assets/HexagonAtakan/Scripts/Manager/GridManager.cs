@@ -8,7 +8,7 @@ namespace HexagonAtakan.Manager
     public class GridManager : MonoBehaviour
     {
         [SerializeField] private GridManagerSettings _gridManagerSettings;
-        protected HexagonController[,] _hexagonBaseArray;
+        public HexagonController[,] _hexagonBaseArray;
 
         public void Start()
         {
