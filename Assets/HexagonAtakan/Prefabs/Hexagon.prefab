@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e474789cb715c1e44a7c777ec6610d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hexagonControllerSettings: {fileID: 11400000, guid: bdc375694734cc74f9f303ff19793295, type: 2}
   _xPosition: 0
   _yPosition: 0
   _hexColor: {r: 0, g: 0, b: 0, a: 0}

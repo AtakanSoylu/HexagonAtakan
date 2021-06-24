@@ -5,6 +5,9 @@ namespace HexagonAtakan.Hexagon
 {
     public class HexagonController : MonoBehaviour
     {
+        [SerializeField] private HexagonControllerSettings _hexagonControllerSettings;
+
+
         [SerializeField] private int _xPosition;
         public int XPosition { get { return _xPosition; } }
 
@@ -14,7 +17,7 @@ namespace HexagonAtakan.Hexagon
         [SerializeField] private Color _hexColor;
         public Color HexColor { get { return _hexColor; } set { _hexColor = value; } }
 
-        public void SetPosition(int x,int y)
+        public void SetArrayPosition(int x, int y)
         {
             _xPosition = x;
             _yPosition = y;
@@ -23,6 +26,31 @@ namespace HexagonAtakan.Hexagon
         private void Update()
         {
             transform.GetComponent<SpriteRenderer>().color = HexColor;
+
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                StartLerpPositionIEnumerator(new Vector2(6, 4));
+            }
+        }
+
+
+        public void StartLerpPositionIEnumerator(Vector2 targetPosition)
+        {
+            StartCoroutine(LerpPosition(targetPosition));
+        }
+
+        IEnumerator LerpPosition(Vector2 targetPosition)
+        {
+            float time = 0;
+            Vector2 startPosition = transform.position;
+
+            while (time < _hexagonControllerSettings.HexagonPositionTime)
+            {
+                transform.position = Vector2.Lerp(startPosition, targetPosition, time / _hexagonControllerSettings.HexagonPositionTime);
+                time += Time.deltaTime;
+                yield return null;
+            }
+            transform.position = targetPosition;
         }
 
 

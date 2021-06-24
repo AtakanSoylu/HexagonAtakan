@@ -33,7 +33,7 @@ namespace HexagonAtakan.Manager
 
 
                     //Add Hexagon to Hexagon Array
-                    instatiated.GetComponent<HexagonController>().SetPosition(x, y);
+                    instatiated.GetComponent<HexagonController>().SetArrayPosition(x, y);
                     _hexagonBaseArray[x, y] = instatiated.GetComponent<HexagonController>();
                 }
             }

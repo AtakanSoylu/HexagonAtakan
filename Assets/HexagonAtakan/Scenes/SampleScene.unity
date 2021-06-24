@@ -154,6 +154,7 @@ Transform:
   - {fileID: 793105432}
   - {fileID: 1156213045}
   - {fileID: 1490620620}
+  - {fileID: 1638393786}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -548,6 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridManager: {fileID: 793105433}
   _inputData: {fileID: 11400000, guid: 291ba7f3b00f7e64db926656ab7b0d56, type: 2}
+  _activeSelectableObject: {fileID: 0}
   _selectedHexagonsHit: {fileID: 0}
   _previousColiderHit: {fileID: 0}
 --- !u!1 &1490620619
@@ -595,3 +597,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selectManagerSettings: {fileID: 11400000, guid: 7709d458fb8d406419fb8afe81621f71, type: 2}
   _gridManagerSettings: {fileID: 11400000, guid: f2748cb6958196c41818ee591ccdf432, type: 2}
+--- !u!1 &1638393785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1638393786}
+  - component: {fileID: 1638393787}
+  m_Layer: 0
+  m_Name: SearchManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1638393786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638393785}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 58350920}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1638393787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638393785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9fd7d2691f780646aae2d2d8a8695eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gridManager: {fileID: 793105433}
+  _gridManagerSettings: {fileID: 11400000, guid: f2748cb6958196c41818ee591ccdf432, type: 2}
+  _groupMemberCount: 0
+  _rightEnterCount: 0
+  _leftEnterCount: 0

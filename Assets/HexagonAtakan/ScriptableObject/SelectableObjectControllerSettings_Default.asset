@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SelectableObjectControllerSettings_Default
   m_EditorClassIdentifier: 
   _rotationTime: 0.1
-  _delayBetweenRotations: 0.2
+  _delayBetweenRotations: 0.1
