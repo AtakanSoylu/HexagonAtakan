@@ -17,6 +17,11 @@ namespace HexagonAtakan.Hexagon
         [SerializeField] private Color _hexColor;
         public Color HexColor { get { return _hexColor; } set { _hexColor = value; } }
 
+        public Vector2 GetArrayPosition()
+        {
+            return new Vector2(XPosition, YPosition);
+        }
+
         public void SetArrayPosition(int x, int y)
         {
             _xPosition = x;
@@ -53,6 +58,10 @@ namespace HexagonAtakan.Hexagon
             transform.position = targetPosition;
         }
 
+        public void Destroy()
+        {
+            Destroy(gameObject);
+        }
 
     }
 }
