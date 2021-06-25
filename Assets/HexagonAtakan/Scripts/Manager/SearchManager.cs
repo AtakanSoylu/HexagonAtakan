@@ -83,10 +83,12 @@ namespace HexagonAtakan.Manager
 
 
 
-                    
+
                 }
             }
         }
+
+        //Search Left Hexagon From Even
         public void SearchEvenLeftGroup(int x, int y)
         {
             //Fixed out range
@@ -96,25 +98,20 @@ namespace HexagonAtakan.Manager
                 {
                     _tempHexagonList.Add(_gridManager._hexagonBaseArray[x - 1, y]);
                     _groupMemberCount++;
-                    _rightEnterCount++;
+                    _leftEnterCount++;
                     SearchOddRightGroup(x - 1, y);
                 }
                 else
                 {
                     if (_groupMemberCount >= 2)
                     {
-                        foreach (var item in _tempHexagonList)
-                        {
-                            //item.gameObject.SetActive(false);
-                        }
-
-                        //DropTop(x, y, _rightEnterCount);
-                        //DropTop(x - 1, y, _leftEnterCount);
+                        DropTop(x, y, _rightEnterCount);
+                        DropTop(x - 1, y-1, _leftEnterCount);
                     }
                 }
             }
         }
-
+        //Search Right Hexagon From Odd
         public void SearchOddRightGroup(int x, int y)
         {
             //Fixed out range
@@ -124,27 +121,22 @@ namespace HexagonAtakan.Manager
                 {
                     _tempHexagonList.Add(_gridManager._hexagonBaseArray[x + 1, y + 1]);
                     _groupMemberCount++;
-                    _leftEnterCount++;
+                    _rightEnterCount++;
                     SearchEvenLeftGroup(x + 1, y + 1);
                 }
                 else
                 {
+
                     if (_groupMemberCount >= 2)
                     {
-                        foreach (var item in _tempHexagonList)
-                        {
-                            //item.gameObject.SetActive(false);
-                        }
-                        Debug.Log("burd");
-
                         DropTop(x, y,_leftEnterCount);
                         DropTop(x+1, y,_rightEnterCount);
-
                     }
                 }
             }
         }
 
+        //Search Right Hexagon from Even
         public void SearchEvenRightGroup(int x, int y)
         {
             //Fixed out range
@@ -154,23 +146,23 @@ namespace HexagonAtakan.Manager
                 {
                     _tempHexagonList.Add(_gridManager._hexagonBaseArray[x + 1, y]);
                     _groupMemberCount++;
-                    _leftEnterCount++;
+                    _rightEnterCount++;//right
                     SearchOddLeftGroup(x + 1, y);
                 }
                 else
                 {
+
                     if (_groupMemberCount >= 2)
                     {
-                        foreach (var item in _tempHexagonList)
-                        {
-                            //item.gameObject.SetActive(false);
-                        }
+                        DropTop(x, y, _leftEnterCount);
+                        DropTop(x + 1, y - 1, _rightEnterCount);
                     }
-                   // DropTop(x, y, _leftEnterCount);
-                   // DropTop(x + 1, y, _rightEnterCount);
+
                 }
             }
         }
+
+        //Search Left Hexagon From Odd
         public void SearchOddLeftGroup(int x, int y)
         {
             //Fixed out range
@@ -180,37 +172,61 @@ namespace HexagonAtakan.Manager
                 {
                     _tempHexagonList.Add(_gridManager._hexagonBaseArray[x - 1, y + 1]);
                     _groupMemberCount++;
-                    _rightEnterCount++;
+                    _leftEnterCount++ ;//left
                     SearchEvenRightGroup(x - 1, y + 1);
                 }
                 else
                 {
                     if (_groupMemberCount >= 2)
                     {
-                        foreach (var item in _tempHexagonList)
-                        {
-                            //item.gameObject.SetActive(false);
-                        }
+                        DropTop(x, y, _rightEnterCount);
+                        DropTop(x - 1, y, _leftEnterCount);
                     }
-                    //DropTop(x, y, _rightEnterCount);
-                   // DropTop(x - 1, y, _leftEnterCount);
+
                 }
             }
         }
 
-        public void DropTop(int x,int y,int enterCount)
+        public void DropTop(int x, int y, int enterCount)
         {
-            for (int i = 0; i < y+1; i++)
+
+            foreach (var item in _tempHexagonList)
+            {
+                if (item != null)
+                {
+                    item.Destroy();
+                }
+            }
+
+
+            for (int i = 0; i < y + 1; i++)
             {
                 int dropArrayLocation = y - enterCount - i;
 
-                if (dropArrayLocation >= 0) {
 
+                if (dropArrayLocation >= 0)
+                {
                     //Write companentsdfsdfsdf
                     Vector3 dropPosition = _gridManager._hexagonBaseArray[x, y - i].transform.position;
                     _gridManager._hexagonBaseArray[x, dropArrayLocation].StartLerpPositionIEnumerator(dropPosition);
+
+                    //Transfer
+
+                    DataTransfer(x, y - i, x, dropArrayLocation);
                 }
+                else
+                {
+                    _gridManager.CreateHexagonWithXY(x, y - i);
+                }
+
             }
+        }
+
+        //Hexagon data transfer
+        public void DataTransfer(int toX, int toY, int fromX, int fromY)
+        {
+            _gridManager._hexagonBaseArray[toX, toY].SetArrayPosition(toX, toY);
+            _gridManager._hexagonBaseArray[toX, toY] = _gridManager._hexagonBaseArray[fromX, fromY];
         }
 
 

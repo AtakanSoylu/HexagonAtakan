@@ -47,6 +47,7 @@ namespace HexagonAtakan.Manager
                             _previousColiderHit.GetComponent<SpriteRenderer>().enabled = false;
                             Transform previousChildSprite = _previousColiderHit.GetComponent<SelectableObject>()._childTransform;
                             previousChildSprite.GetComponent<SpriteRenderer>().enabled = false;
+                            _previousColiderHit.GetComponent<SelectableObject>().ChangeChildHexagons();
                             _previousColiderHit.GetComponent<SelectableObject>().AdjustmentChildHexagonDeactive();
                         }
 
@@ -56,6 +57,7 @@ namespace HexagonAtakan.Manager
                         _activeSelectableObject.GetComponent<SpriteRenderer>().enabled = true;
                         Transform childSprite = _activeSelectableObject._childTransform;
                         childSprite.GetComponent<SpriteRenderer>().enabled = true;
+                        _activeSelectableObject.ChangeChildHexagons();
                         _activeSelectableObject.AdjustmentChildHexagonActive();
 
 

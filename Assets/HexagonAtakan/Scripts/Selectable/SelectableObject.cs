@@ -10,6 +10,7 @@ namespace HexagonAtakan.Selectable
     {
         [SerializeField] private GridManager _gridManager;
         public Transform _childTransform;
+        public Dictionary<int, Vector2> _childHexagonsDictionary;
         public HexagonController[] _childHexagonArray;
         public bool _searching = true;
 
@@ -19,6 +20,7 @@ namespace HexagonAtakan.Selectable
         {
             _gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
             _childHexagonArray = new HexagonController[3];
+            _childHexagonsDictionary = new Dictionary<int, Vector2>();
             _connectedHexagonCount = 0;
         }
 
@@ -30,11 +32,19 @@ namespace HexagonAtakan.Selectable
                 if (_connectedHexagonCount < 3)
                 {
                     _childHexagonArray[_connectedHexagonCount] = coll.GetComponent<HexagonController>();
+                    _childHexagonsDictionary.Add(_connectedHexagonCount, coll.GetComponent<HexagonController>().GetArrayPosition());
                     _connectedHexagonCount++;
                 }
             }
         }
 
+        public void ChangeChildHexagons()
+        {
+            for (int i = 0; i < _childHexagonArray.Length; i++)
+            {
+                _childHexagonArray[i] = _gridManager._hexagonBaseArray[(int)_childHexagonsDictionary[i].x, (int)_childHexagonsDictionary[i].y];
+            }
+        }
 
 
         public void AdjustmentChildHexagonActive()
@@ -54,9 +64,5 @@ namespace HexagonAtakan.Selectable
             }
         }
 
-        public void ChangeChildLocation()
-        {
-
-        }
     }
 }

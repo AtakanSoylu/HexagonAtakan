@@ -18,28 +18,27 @@ namespace HexagonAtakan.Manager
         //Initialize Hexagon for Game Screen
         public void CreateAndInitializeHexagons()
         {
-            Vector3 startPosition = _gridManagerSettings.HexagonStartCoordinate;
             for (int x = 0; x < _gridManagerSettings.Width; x++)
             {
                 for (int y = 0; y < _gridManagerSettings.Height; y++)
                 {
-                    //x Cord Settings
-                    float xCord = startPosition.x + (x * _gridManagerSettings.XCordIncreaseOffset);
-
-                    //y Cord Settings
-                    float yOffset = x % 2 == 0 ? 1 : -1;
-                    float yCord = startPosition.y - (y * _gridManagerSettings.YBottomLineOffset) + (yOffset * _gridManagerSettings.YCordIncreaseOffset);
-                    var instatiated = CreateRandomColorHexagon(new Vector3(xCord, yCord, 0));
-
-
-                    //Add Hexagon to Hexagon Array
-                    instatiated.GetComponent<HexagonController>().SetArrayPosition(x, y);
-                    _hexagonBaseArray[x, y] = instatiated.GetComponent<HexagonController>();
+                    CreateHexagonWithXY(x, y);
                 }
             }
         }
+        public void CreateHexagonWithXY(int x,int y)
+        {
+            Vector3 startPosition = _gridManagerSettings.HexagonStartCoordinate;
+            //x Cord Settings
+            float xCord = startPosition.x + (x * _gridManagerSettings.XCordIncreaseOffset);
 
-        private GameObject CreateRandomColorHexagon(Vector3 position)
+            //y Cord Settings
+            float yOffset = x % 2 == 0 ? 1 : -1;
+            float yCord = startPosition.y - (y * _gridManagerSettings.YBottomLineOffset) + (yOffset * _gridManagerSettings.YCordIncreaseOffset);
+            var instantiated = CreateRandomColorHexagon(new Vector3(xCord, yCord), x, y);
+        }
+
+        public GameObject CreateRandomColorHexagon(Vector3 position,int x,int y)
         {
             // Random int for Hexagon Color
             int rand = Random.Range(0, _gridManagerSettings.HexagonColor.Length);
@@ -47,6 +46,10 @@ namespace HexagonAtakan.Manager
             var instantiated = Instantiate(_gridManagerSettings.HexagonPrefab, position, Quaternion.identity);
             SetColor(instantiated, _gridManagerSettings.HexagonColor[rand]);
             instantiated.GetComponent<HexagonController>().HexColor = _gridManagerSettings.HexagonColor[rand];
+
+            //Add Hexagon to Hexagon Array
+            instantiated.GetComponent<HexagonController>().SetArrayPosition(x, y);
+            _hexagonBaseArray[x, y] = instantiated.GetComponent<HexagonController>();
             return instantiated as GameObject;
         }
 
