@@ -8,20 +8,19 @@ namespace HexagonAtakan.Manager
 {
     public class SearchManager : MonoBehaviour
     {
+        [SerializeField] private ScoreManager _scoreManager;
         [SerializeField] private GridManager _gridManager;
         [SerializeField] private GridManagerSettings _gridManagerSettings;
+
 
         //test
         public int _groupMemberCount;
         private List<HexagonController> _tempHexagonList;
 
+        public bool foundedHex=false;
+
         public int _rightEnterCount = 0;
         public int _leftEnterCount = 0;
-
-        private void Start()
-        {
-            _tempHexagonList = new List<HexagonController>();
-        }
 
         private void Update()
         {
@@ -31,11 +30,21 @@ namespace HexagonAtakan.Manager
             }
         }
 
+
+        private void Awake()
+        {
+            _tempHexagonList = new List<HexagonController>();
+        }
+
+
         public void SearchSceneHexagonGroup()
         {
-            for (int x = 0; x < _gridManagerSettings.Width; x++)
+            foundedHex = false;
+
+            //First Even Search For Bug Fix 
+            for (int y = 0; y < _gridManagerSettings.Height; y++)
             {
-                for (int y = 0; y < _gridManagerSettings.Height; y++)
+                for (int x = 0; x < _gridManagerSettings.Width; x++)
                 {
 
 
@@ -60,8 +69,18 @@ namespace HexagonAtakan.Manager
                         SearchEvenRightGroup(x, y);
 
                     }
+                }
+            }
+
+            //Second Odd Search For Bug Fix
+            for (int y = 0; y < _gridManagerSettings.Height; y++)
+            {
+                for (int x = 0; x < _gridManagerSettings.Width; x++)
+                {
+
+
                     //X is odd
-                    else
+                    if (x % 2 == 1)
                     {
                         //Clear Memory
                         _groupMemberCount = 0;
@@ -79,14 +98,12 @@ namespace HexagonAtakan.Manager
                         _tempHexagonList.Clear();
                         _tempHexagonList.Add(_gridManager._hexagonBaseArray[x, y]);
                         SearchOddRightGroup(x, y);
+
                     }
-
-
-
-
                 }
             }
         }
+
 
         //Search Left Hexagon From Even
         public void SearchEvenLeftGroup(int x, int y)
@@ -107,6 +124,7 @@ namespace HexagonAtakan.Manager
                     {
                         DropTop(x, y, _rightEnterCount);
                         DropTop(x - 1, y-1, _leftEnterCount);
+                        foundedHex = true;
                     }
                 }
             }
@@ -131,6 +149,7 @@ namespace HexagonAtakan.Manager
                     {
                         DropTop(x, y,_leftEnterCount);
                         DropTop(x+1, y,_rightEnterCount);
+                        foundedHex = true;
                     }
                 }
             }
@@ -156,6 +175,7 @@ namespace HexagonAtakan.Manager
                     {
                         DropTop(x, y, _leftEnterCount);
                         DropTop(x + 1, y - 1, _rightEnterCount);
+                        foundedHex = true;
                     }
 
                 }
@@ -172,7 +192,7 @@ namespace HexagonAtakan.Manager
                 {
                     _tempHexagonList.Add(_gridManager._hexagonBaseArray[x - 1, y + 1]);
                     _groupMemberCount++;
-                    _leftEnterCount++ ;//left
+                    _leftEnterCount++ ;
                     SearchEvenRightGroup(x - 1, y + 1);
                 }
                 else
@@ -181,6 +201,7 @@ namespace HexagonAtakan.Manager
                     {
                         DropTop(x, y, _rightEnterCount);
                         DropTop(x - 1, y, _leftEnterCount);
+                        foundedHex = true;
                     }
 
                 }
@@ -201,17 +222,16 @@ namespace HexagonAtakan.Manager
 
             for (int i = 0; i < y + 1; i++)
             {
-                int dropArrayLocation = y - enterCount - i;
 
+                int dropArrayLocation = y - enterCount - i;
 
                 if (dropArrayLocation >= 0)
                 {
-                    //Write companentsdfsdfsdf
+                    //Hexagon change position with Vector.Lerp
                     Vector3 dropPosition = _gridManager._hexagonBaseArray[x, y - i].transform.position;
                     _gridManager._hexagonBaseArray[x, dropArrayLocation].StartLerpPositionIEnumerator(dropPosition);
 
                     //Transfer
-
                     DataTransfer(x, y - i, x, dropArrayLocation);
                 }
                 else
@@ -220,13 +240,14 @@ namespace HexagonAtakan.Manager
                 }
 
             }
+            _scoreManager.IncreaseScore(enterCount);
         }
 
         //Hexagon data transfer
         public void DataTransfer(int toX, int toY, int fromX, int fromY)
         {
-            _gridManager._hexagonBaseArray[toX, toY].SetArrayPosition(toX, toY);
             _gridManager._hexagonBaseArray[toX, toY] = _gridManager._hexagonBaseArray[fromX, fromY];
+            _gridManager._hexagonBaseArray[toX, toY].SetArrayPosition(toX, toY);
         }
 
 

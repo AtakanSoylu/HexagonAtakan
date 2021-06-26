@@ -35,6 +35,16 @@ namespace HexagonAtakan.PlayerInput
                     {
                         LastClickPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
                     }
+                    if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                    {
+                        UpClickPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                    }
+                }
+
+                if (Vector3.Distance(StartClickPosition, UpClickPosition) < 0.05f)
+                {
+                    distanceTest = Vector3.Distance(StartClickPosition, UpClickPosition);
+                    SelectedObjectPosition = UpClickPosition;
                 }
             }
             else if (_InputPlatformType == InputPlatformType.Windows && LockClick == false)

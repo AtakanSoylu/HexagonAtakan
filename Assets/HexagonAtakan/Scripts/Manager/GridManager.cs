@@ -10,10 +10,11 @@ namespace HexagonAtakan.Manager
         [SerializeField] private GridManagerSettings _gridManagerSettings;
         public HexagonController[,] _hexagonBaseArray;
 
-        public void Start()
+        public void Awake()
         {
             _hexagonBaseArray = new HexagonController[_gridManagerSettings.Width, _gridManagerSettings.Height];
         }
+
 
         //Initialize Hexagon for Game Screen
         public void CreateAndInitializeHexagons()
@@ -56,6 +57,27 @@ namespace HexagonAtakan.Manager
         private void SetColor(GameObject value, Color color)
         {
             value.GetComponent<SpriteRenderer>().color = color;
+        }
+
+        //Fix Hexagons Positions (Temporary)
+        public void FixScene()
+        {
+            for (int x = 0; x < _gridManagerSettings.Width; x++)
+            {
+                for (int y = 0; y < _gridManagerSettings.Height; y++)
+                {
+                    Vector3 startPosition = _gridManagerSettings.HexagonStartCoordinate;
+                    //x Cord Settings
+                    float xCord = startPosition.x + (x * _gridManagerSettings.XCordIncreaseOffset);
+
+                    //y Cord Settings
+                    float yOffset = x % 2 == 0 ? 1 : -1;
+                    float yCord = startPosition.y - (y * _gridManagerSettings.YBottomLineOffset) + (yOffset * _gridManagerSettings.YCordIncreaseOffset);
+
+                    //Fix Hexagons Positions
+                    _hexagonBaseArray[x, y].transform.position = new Vector3(xCord, yCord);
+                }
+            }
         }
     }
 }

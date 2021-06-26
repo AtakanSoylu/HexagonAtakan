@@ -10,6 +10,7 @@ namespace HexagonAtakan.Manager
     {
         [SerializeField] private GridManager _gridManager;
         [SerializeField] private InputData _inputData;
+        [SerializeField] private SearchManager _searchManager;
 
 
         public SelectableObject _activeSelectableObject;
@@ -41,7 +42,7 @@ namespace HexagonAtakan.Manager
                         _activeSelectableObject = _selectedHexagonsHit.GetComponent<SelectableObject>();
                         _inputData.isDragable = true;
 
-                        //Previous Sprite Deactive
+                        //Previous Sprite Renderer Deactive
                         if (_previousColiderHit != null && _previousColiderHit.GetComponent<SpriteRenderer>() != null)
                         {
                             _previousColiderHit.GetComponent<SpriteRenderer>().enabled = false;
@@ -53,7 +54,7 @@ namespace HexagonAtakan.Manager
 
 
 
-                        //Sprite Renderer Active
+                        //Current Sprite Renderer Active
                         _activeSelectableObject.GetComponent<SpriteRenderer>().enabled = true;
                         Transform childSprite = _activeSelectableObject._childTransform;
                         childSprite.GetComponent<SpriteRenderer>().enabled = true;
@@ -79,6 +80,8 @@ namespace HexagonAtakan.Manager
                         RotateDirection();
                     else
                     {
+                        _activeSelectableObject.ChangeChildHexagons();
+                        _activeSelectableObject.FixChildHexagon();
                         StopRotate();
                     }
 
@@ -122,6 +125,7 @@ namespace HexagonAtakan.Manager
                 {
                     _inputData.LockClick = true;
                     _activeSelectableObject.GetComponent<SelectableObjectController>().StartRotate(leftRotateAngre);
+
                 }
             }
             else if (centerPosition.y > _inputData.StartClickPosition.y)
@@ -135,6 +139,7 @@ namespace HexagonAtakan.Manager
                 {
                     _inputData.LockClick = true;
                     _activeSelectableObject.GetComponent<SelectableObjectController>().StartRotate(rightRotateAngre);
+
                 }
                 else if (_inputData.StartClickPosition.y > _inputData.LastClickPosition.y + inputTolerance)
                 {
