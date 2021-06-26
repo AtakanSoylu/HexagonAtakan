@@ -5,22 +5,29 @@ using HexagonAtakan.Manager;
 
 namespace HexagonAtakan.Selectable
 {
+
     public class SelectableObjectController : MonoBehaviour
     {
+        [SerializeField] private SearchManager _searchManager;
         [SerializeField] private SelectableObjectControllerSettings _selectableControllerSettings;
 
         private WaitForSeconds _rotationDelay;
         private Quaternion _targetRot;
 
-        private bool _rotating = false;
+        private bool _rotating;
+        public int _rotateCount;
+        public bool _foundedHexGroup;
 
-        public int _rotateCount = 0;
 
 
         private void Start()
-        {            
+        {
             _rotationDelay = new WaitForSeconds(_selectableControllerSettings.DelayBetweenRotations);
             _targetRot = transform.localRotation;
+            _rotating = false;
+            _rotateCount = 0;
+            _foundedHexGroup = false;
+            _searchManager = GameObject.Find("SearchManager").GetComponent<SearchManager>();
         }
 
         //Start rotate with angle
@@ -29,10 +36,9 @@ namespace HexagonAtakan.Selectable
             if (_rotating == false)
             {
                 _rotating = true;
-                StartCoroutine(Rotate(_selectableControllerSettings.RotationTime,angle));
+                StartCoroutine(Rotate(_selectableControllerSettings.RotationTime, angle));
             }
         }
-
 
         private IEnumerator Rotate(float rotateTime, float angle)
         {
@@ -52,9 +58,29 @@ namespace HexagonAtakan.Selectable
             yield return _rotationDelay;
 
             _rotating = false;
-            
-            //Add rotate count
-            _rotateCount++;
+
+            if (angle == 120.0f)
+            {
+                transform.GetComponent<SelectableObject>().ChildHexagonsRotateRight();
+            }
+            else if (angle == -120.0f)
+            {
+                transform.GetComponent<SelectableObject>().ChildHexagonsRotateLeft();
+            }
+
+            //Mean if founded group stop rotation
+            _searchManager.SearchSceneHexagonGroup();
+            if (_searchManager.foundedHex == true)
+            {
+                _rotateCount = 3;
+            }
+            else
+            {
+                //Add rotate count
+                _rotateCount++;
+            }
         }
+
+
     }
 }
