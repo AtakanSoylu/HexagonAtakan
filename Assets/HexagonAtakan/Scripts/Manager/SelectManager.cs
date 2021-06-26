@@ -58,11 +58,13 @@ namespace HexagonAtakan.Manager
                     if (isNarrow)
                     {
                         var instatiated = Instantiate(_selectManagerSettings.SelectedHexagonPrefab, position, Quaternion.Euler(0, 0, 180));
+                        instatiated.GetComponent<SelectableObject>()._selectableObjectType = SelectableObjectType.LeftBig;
                         _selectableObjectArray[x, y] = instatiated.GetComponent<SelectableObject>();
                     }
                     else
                     {
                         var instatiated = Instantiate(_selectManagerSettings.SelectedHexagonPrefab, position, Quaternion.identity);
+                        instatiated.GetComponent<SelectableObject>()._selectableObjectType = SelectableObjectType.RightBig;
                         _selectableObjectArray[x, y] = instatiated.GetComponent<SelectableObject>();
 
                     }
