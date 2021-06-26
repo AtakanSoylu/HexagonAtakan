@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 8532250602998684393}
   - component: {fileID: 8680891535284314037}
   - component: {fileID: 1562567464068170906}
+  - component: {fileID: -182395977211474174}
   - component: {fileID: 6935935084288775303}
   - component: {fileID: 9120510063554464624}
-  - component: {fileID: -182395977211474174}
   m_Layer: 0
   m_Name: SelectHexagonPrefab
   m_TagString: Untagged
@@ -187,6 +187,20 @@ MonoBehaviour:
   _childTransform: {fileID: 1534191414700991953}
   _childHexagonArray: []
   _searching: 1
+--- !u!114 &-182395977211474174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652894920026013614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb1866e625ae1044b1eec1d63bb9600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectableControllerSettings: {fileID: 11400000, guid: 6459350eff71c184e8f590773da2548e, type: 2}
+  _rotateCount: 0
 --- !u!58 &6935935084288775303
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -224,17 +238,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-182395977211474174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7652894920026013614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb1866e625ae1044b1eec1d63bb9600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _selectableControllerSettings: {fileID: 11400000, guid: 6459350eff71c184e8f590773da2548e, type: 2}
-  _rotateCount: 0

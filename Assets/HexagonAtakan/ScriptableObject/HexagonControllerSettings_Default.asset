@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bed216fc2dadfb40b01504641e25d87, type: 3}
   m_Name: HexagonControllerSettings_Default
   m_EditorClassIdentifier: 
-  _hexagonPositionTime: 5
+  _hexagonPositionTime: 0.15

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: InputData_Windows
   m_EditorClassIdentifier: 
   LockClick: 0
-  StartClickPosition: {x: 1.4905365, y: 4.280757, z: -10}
-  LastClickPosition: {x: 1.4905365, y: 4.280757, z: -10}
-  UpClickPosition: {x: 1.4905365, y: 4.280757, z: -10}
-  SelectedObjectPosition: {x: 1.4905365, y: 4.280757, z: -10}
+  StartClickPosition: {x: 0.4487179, y: 2.1709404, z: -10}
+  LastClickPosition: {x: 0.4487179, y: 2.1709404, z: -10}
+  UpClickPosition: {x: -0.9358974, y: 1.5726498, z: -10}
+  SelectedObjectPosition: {x: -0.9358974, y: 1.5726498, z: -10}
   distanceTest: 0
-  isDragable: 0
+  isDragable: 1
   _InputPlatformType: 1
