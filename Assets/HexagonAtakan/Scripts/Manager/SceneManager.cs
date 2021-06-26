@@ -24,7 +24,7 @@ namespace HexagonAtakan.Manager
             {
                 _searchManager.SearchSceneHexagonGroup();
             }
-            Destroy(gameObject,3);
+            Destroy(gameObject,2);
         }
     }
 }
